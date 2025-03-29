@@ -217,11 +217,11 @@ export default function JsonTreeViewer() {
         </div>
       </header>
 
+
 <header className="border-b border-zinc-200 dark:border-zinc-800 p-2">
   <h1 className="text-sm font-medium text-center text-zinc-500 dark:text-zinc-400">JSON Tree Viewer - Interactive editor for JSON data</h1>
 </header>
 
-{/* Main content */}
 <main className="flex flex-1 overflow-hidden">
   {!jsonData ? (
     <div className="flex flex-col items-center justify-center w-full h-full gap-4 p-4">
@@ -232,6 +232,59 @@ export default function JsonTreeViewer() {
           onChange={(e) => handleJsonInput(e.target.value)}
           className="w-full h-64 p-2 border border-zinc-200 dark:border-zinc-700 rounded font-mono text-xs bg-transparent focus:outline-none focus:ring-1 focus:ring-zinc-300 dark:focus:ring-zinc-600 resize-none"
         />
+        {/* Try Example button */}
+        <div className="flex justify-end mt-2">
+          <button
+            onClick={() => {
+              // Example JSON data - you can customize this
+              const exampleJson = JSON.stringify(
+                {
+                  "name": "JSON Tree Viewer",
+                  "version": "1.0.0",
+                  "description": "Interactive viewer for JSON data",
+                  "features": {
+                    "treeView": true,
+                    "editing": true,
+                    "search": true,
+                    "themes": ["light", "dark"]
+                  },
+                  "stats": {
+                    "downloads": 1250,
+                    "stars": 48,
+                    "contributors": 5
+                  },
+                  "examples": [
+                    {
+                      "id": 1,
+                      "name": "Simple Object"
+                    },
+                    {
+                      "id": 2,
+                      "name": "Complex Structure"
+                    }
+                  ]
+                },
+                null,
+                2
+              );
+
+              // Set the example JSON to the textarea
+              handleJsonInput(exampleJson);
+
+              // Optional: Auto-parse the example
+              try {
+                const parsed = JSON.parse(exampleJson);
+                setJsonData(parsed);
+                setOriginalData(JSON.parse(JSON.stringify(parsed)));
+              } catch (error) {
+                // Handle error if needed
+              }
+            }}
+            className="px-3 py-1 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 rounded text-xs"
+          >
+            Try Example
+          </button>
+        </div>
       </div>
       <div className="text-center text-zinc-500 dark:text-zinc-400 text-xs">
         <p>Drag & drop a JSON file or paste JSON content</p>
