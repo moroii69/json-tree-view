@@ -217,72 +217,53 @@ export default function JsonTreeViewer() {
         </div>
       </header>
 
-      {/* Main content */}
-      <main className="flex flex-1 overflow-hidden">
-        {!jsonData ? (
-          <div className="flex flex-col items-center justify-center w-full h-full gap-4 p-4">
-            <div className="max-w-md w-full">
-              <textarea
-                placeholder="Paste JSON here..."
-                value={jsonString}
-                onChange={(e) => handleJsonInput(e.target.value)}
-                className="w-full h-64 p-2 border border-zinc-200 dark:border-zinc-700 rounded font-mono text-xs bg-transparent focus:outline-none focus:ring-1 focus:ring-zinc-300 dark:focus:ring-zinc-600 resize-none"
-              />
-              <div className="flex justify-end mt-2">
-                <button
-                  onClick={() => {
-                    try {
-                      if (jsonString.trim()) {
-                        const parsed = JSON.parse(jsonString)
-                        setJsonData(parsed)
-                        setOriginalData(JSON.parse(JSON.stringify(parsed)))
-                      }
-                    } catch (error) {
-                      toast({
-                        title: "Invalid JSON",
-                        description: "Please check your JSON syntax.",
-                        variant: "destructive",
-                      })
-                    }
-                  }}
-                  className="px-3 py-1 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 rounded text-xs"
-                >
-                  Parse
-                </button>
-              </div>
-            </div>
-            <div className="text-center text-zinc-500 dark:text-zinc-400 text-xs">
-              <p>Drag & drop a JSON file or paste JSON content</p>
-              <p className="mt-1">Press Ctrl+O to open a file</p>
-            </div>
-          </div>
-        ) : (
-          <div className="flex flex-1 overflow-auto">
-            {/* Line numbers */}
-            <div className="flex-none py-1 px-2 text-right bg-zinc-50 dark:bg-zinc-800/50 text-zinc-400 dark:text-zinc-500 select-none">
-              {Array.from({ length: countLines(JSON.stringify(jsonData, null, 2)) }).map((_, i) => (
-                <div key={i} className="h-5 text-xs">
-                  {i + 1}
-                </div>
-              ))}
-            </div>
+<header className="border-b border-zinc-200 dark:border-zinc-800 p-2">
+  <h1 className="text-sm font-medium text-center text-zinc-500 dark:text-zinc-400">JSON Tree Viewer - Interactive editor for JSON data</h1>
+</header>
 
-            {/* JSON tree */}
-            <div className="flex-1 p-1 overflow-auto">
-              <JsonTreeNode
-                data={jsonData}
-                label="root"
-                isRoot={true}
-                searchTerm={searchTerm}
-                expandAll={expandAll}
-                onCopy={copyToClipboard}
-                path={[]}
-                updateValue={updateJsonAtPath}
-              />
-            </div>
+{/* Main content */}
+<main className="flex flex-1 overflow-hidden">
+  {!jsonData ? (
+    <div className="flex flex-col items-center justify-center w-full h-full gap-4 p-4">
+      <div className="max-w-md w-full">
+        <textarea
+          placeholder="Paste JSON here..."
+          value={jsonString}
+          onChange={(e) => handleJsonInput(e.target.value)}
+          className="w-full h-64 p-2 border border-zinc-200 dark:border-zinc-700 rounded font-mono text-xs bg-transparent focus:outline-none focus:ring-1 focus:ring-zinc-300 dark:focus:ring-zinc-600 resize-none"
+        />
+      </div>
+      <div className="text-center text-zinc-500 dark:text-zinc-400 text-xs">
+        <p>Drag & drop a JSON file or paste JSON content</p>
+        <p className="mt-1">Press Ctrl+O to open a file</p>
+      </div>
+    </div>
+  ) : (
+    <div className="flex flex-1 overflow-auto">
+      {/* Line numbers */}
+      <div className="flex-none py-1 px-2 text-right bg-zinc-50 dark:bg-zinc-800/50 text-zinc-400 dark:text-zinc-500 select-none">
+        {Array.from({ length: countLines(JSON.stringify(jsonData, null, 2)) }).map((_, i) => (
+          <div key={i} className="h-5 text-xs">
+            {i + 1}
           </div>
-        )}
-      </main>
+        ))}
+      </div>
+      {/* JSON tree */}
+      <div className="flex-1 p-1 overflow-auto">
+        <JsonTreeNode
+          data={jsonData}
+          label="root"
+          isRoot={true}
+          searchTerm={searchTerm}
+          expandAll={expandAll}
+          onCopy={copyToClipboard}
+          path={[]}
+          updateValue={updateJsonAtPath}
+        />
+      </div>
+    </div>
+  )}
+</main>
     </div>
   )
 }
