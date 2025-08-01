@@ -32,7 +32,7 @@ export function StatsPage() {
   if (!metrics) {
     return (
       <div className="flex flex-col h-screen bg-stone-50 dark:bg-stone-900 font-mono text-sm">
-        <header className="flex items-center px-4 h-10 border-b border-stone-200 dark:border-stone-800">
+        <header className="flex items-center px-4 h-10 border-b border-stone-200 dark:border-800">
           <Link
             href="/"
             className="flex items-center gap-2 text-stone-600 dark:text-stone-300 hover:text-stone-800 dark:hover:text-stone-100 transition-colors"
@@ -52,7 +52,13 @@ export function StatsPage() {
         <footer className="border-t border-stone-200 dark:border-stone-800 px-4 py-2 text-xs text-stone-400 dark:text-stone-500">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <span>Questions? hey@ufraan</span>
+              <span>Questions? </span>
+              <a
+                href="mailto:hey@ufraan.com"
+                className="flex items-center gap-1 hover:text-stone-600 dark:hover:text-stone-300 transition-colors"
+              >
+                hey@ufraan.com
+              </a>
               <a
                 href="https://twitter.com/ufraaaan"
                 target="_blank"
@@ -140,7 +146,13 @@ export function StatsPage() {
       <footer className="border-t border-stone-200 dark:border-stone-800 px-4 py-2 text-xs text-stone-400 dark:text-stone-500">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <span>Questions? hey@ufraan</span>
+            <span>Questions? </span>
+            <a
+              href="mailto:hey@ufraan.com"
+              className="flex items-center gap-1 hover:text-stone-600 dark:hover:text-stone-300 transition-colors"
+            >
+              hey@ufraan.com
+            </a>
             <a
               href="https://twitter.com/ufraaaan"
               target="_blank"

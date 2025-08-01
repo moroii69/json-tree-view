@@ -235,14 +235,15 @@ export function JsonViewer() {
     <div className="flex flex-col h-screen bg-stone-50 dark:bg-stone-900 font-mono text-sm">
       {/* Error banner */}
       {error && (
-        <div className="bg-red-50 dark:bg-red-900/20 border-b border-red-200 dark:border-red-800 px-4 py-2 text-red-700 dark:text-red-400 text-xs">
+        <div className="bg-red-50 dark:bg-red-900/20 border-b border-red-200 dark:border-800 px-4 py-2 text-red-700 dark:text-red-400 text-xs">
           {error}
         </div>
       )}
 
       {/* Header */}
-      <header className="flex items-center justify-between px-4 h-10 border-b border-stone-200 dark:border-stone-800">
-        <div className="flex items-center gap-2">
+      <header className="flex items-center px-4 h-10 border-b border-stone-200 dark:border-stone-800 relative">
+        {/* Left group of buttons */}
+        <div className="flex items-center gap-2 absolute left-4">
           <button
             onClick={() => fileInputRef.current?.click()}
             className="p-1 hover:bg-stone-100 dark:hover:bg-stone-800 rounded transition-colors"
@@ -294,7 +295,14 @@ export function JsonViewer() {
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex-1 flex justify-center">
+          <span className="text-stone-300 dark:text-stone-700 text-xs tracking-widest font-extralight">
+            J.S.O.N. TREE VIEWER
+          </span>
+        </div>
+
+        {/* Right group of search and theme toggle */}
+        <div className="flex items-center gap-2 absolute right-4">
           {jsonData && (
             <SearchBar
               searchTerm={searchTerm}
@@ -361,6 +369,25 @@ export function JsonViewer() {
                           hobbies: ["reading", "swimming", "coding"],
                           isActive: true,
                           balance: 1250.5,
+                          "nested-array": [
+                            { id: 1, value: "alpha" },
+                            { id: 2, value: "beta" },
+                            { id: 3, value: "gamma" },
+                          ],
+                          "complex-object": {
+                            status: "active",
+                            details: {
+                              lastLogin: "2024-07-30T10:00:00Z",
+                              preferences: {
+                                theme: "dark",
+                                notifications: true,
+                              },
+                            },
+                            tags: ["user", "premium", "verified"],
+                          },
+                          nullValue: null,
+                          emptyArray: [],
+                          emptyObject: {},
                         }
                         setJsonString(JSON.stringify(exampleJson, null, 2))
                       }}
@@ -425,7 +452,13 @@ export function JsonViewer() {
       <footer className="border-t border-stone-200 dark:border-stone-800 px-4 py-2 text-xs text-stone-400 dark:text-stone-500">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <span>Questions? hey@ufraan</span>
+            <span>Questions? </span>
+            <a
+              href="mailto:hey@ufraan.com"
+              className="flex items-center gap-1 hover:text-stone-600 dark:hover:text-stone-300 transition-colors"
+            >
+              hey@ufraan.com
+            </a>
             <a
               href="https://twitter.com/ufraaaan"
               target="_blank"

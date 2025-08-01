@@ -30,5 +30,8 @@ export default function RootLayout({
 }
 
 export const metadata = {
-      title: 'JSON Tree Viewer'
+      title: 'JSON Tree Viewer',
+      icons: {
+        icon: "/code.png"
+      }
     };
