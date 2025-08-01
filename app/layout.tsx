@@ -29,10 +29,6 @@ export default function RootLayout({
   )
 }
 
-
-
-import './globals.css'
-
 export const metadata = {
-      author: 'mohammed ufraan'
+      title: 'JSON Tree Viewer'
     };
