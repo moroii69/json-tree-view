@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useState, useEffect, useRef } from "react"
-import { Upload, Download, Copy, Sun, Moon, ChevronRight, BarChart3 } from "lucide-react"
+import { Upload, Download, Copy, Sun, Moon, ChevronRight, BarChart3, Home } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useToast } from "@/hooks/use-toast"
 import { JsonTreeNode } from "./json-tree-node"
@@ -235,15 +235,22 @@ export function JsonViewer() {
     <div className="flex flex-col h-screen bg-stone-50 dark:bg-stone-900 font-mono text-sm">
       {/* Error banner */}
       {error && (
-        <div className="bg-red-50 dark:bg-red-900/20 border-b border-red-200 dark:border-800 px-4 py-2 text-red-700 dark:text-red-400 text-xs">
+        <div className="bg-red-50 dark:bg-red-900/20 border-b border-red-200 dark:border-red-800 px-4 py-2 text-red-700 dark:text-red-400 text-xs">
           {error}
         </div>
       )}
 
       {/* Header */}
-      <header className="flex items-center px-4 h-10 border-b border-stone-200 dark:border-stone-800 relative">
-        {/* Left group of buttons */}
-        <div className="flex items-center gap-2 absolute left-4">
+      <header className="flex items-center justify-between px-4 h-10 border-b border-stone-200 dark:border-stone-800">
+        <div className="flex items-center gap-2">
+          <Link
+            href="/"
+            className="p-1 hover:bg-stone-100 dark:hover:bg-stone-800 rounded transition-colors"
+            title="Home"
+          >
+            <Home className="h-4 w-4" />
+          </Link>
+
           <button
             onClick={() => fileInputRef.current?.click()}
             className="p-1 hover:bg-stone-100 dark:hover:bg-stone-800 rounded transition-colors"
@@ -275,7 +282,7 @@ export function JsonViewer() {
                 <button
                   onClick={() => setExpandAll(!expandAll)}
                   className="p-1 hover:bg-stone-100 dark:hover:bg-stone-800 rounded transition-colors"
-                  title="" // Remove browser tooltip
+                  title=""
                 >
                   <ChevronRight className={cn("h-4 w-4 transition-transform", expandAll ? "rotate-90" : "")} />
                 </button>
@@ -295,14 +302,7 @@ export function JsonViewer() {
           )}
         </div>
 
-        <div className="flex-1 flex justify-center">
-          <span className="text-stone-300 dark:text-stone-700 text-xs tracking-widest font-extralight">
-            J.S.O.N. TREE VIEWER
-          </span>
-        </div>
-
-        {/* Right group of search and theme toggle */}
-        <div className="flex items-center gap-2 absolute right-4">
+        <div className="flex items-center gap-2">
           {jsonData && (
             <SearchBar
               searchTerm={searchTerm}
@@ -455,7 +455,7 @@ export function JsonViewer() {
             <span>Questions? </span>
             <a
               href="mailto:hey@ufraan.com"
-              className="flex items-center gap-1 hover:text-stone-600 dark:hover:text-stone-300 transition-colors"
+              className="hover:text-stone-600 dark:hover:text-stone-300 transition-colors"
             >
               hey@ufraan.com
             </a>

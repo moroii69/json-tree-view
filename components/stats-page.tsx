@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { ArrowLeft, Clock, FileText, Layers, Hash } from "lucide-react"
+import { ArrowLeft, Clock, FileText, Layers, Hash, Home } from "lucide-react"
 import Link from "next/link"
 import type { ParseMetrics } from "@/lib/json-parser"
 
@@ -32,14 +32,23 @@ export function StatsPage() {
   if (!metrics) {
     return (
       <div className="flex flex-col h-screen bg-stone-50 dark:bg-stone-900 font-mono text-sm">
-        <header className="flex items-center px-4 h-10 border-b border-stone-200 dark:border-800">
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-stone-600 dark:text-stone-300 hover:text-stone-800 dark:hover:text-stone-100 transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            <span>Back</span>
-          </Link>
+        <header className="flex items-center px-4 h-10 border-b border-stone-200 dark:border-stone-800">
+          <div className="flex items-center gap-2">
+            <Link
+              href="/"
+              className="p-1 hover:bg-stone-100 dark:hover:bg-stone-800 rounded transition-colors"
+              title="Home"
+            >
+              <Home className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/viewer"
+              className="flex items-center gap-2 text-stone-600 dark:text-stone-300 hover:text-stone-800 dark:hover:text-stone-100 transition-colors"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              <span>Back to Viewer</span>
+            </Link>
+          </div>
         </header>
 
         <main className="flex-1 flex items-center justify-center">
@@ -55,7 +64,7 @@ export function StatsPage() {
               <span>Questions? </span>
               <a
                 href="mailto:hey@ufraan.com"
-                className="flex items-center gap-1 hover:text-stone-600 dark:hover:text-stone-300 transition-colors"
+                className="hover:text-stone-600 dark:hover:text-stone-300 transition-colors"
               >
                 hey@ufraan.com
               </a>
@@ -81,13 +90,22 @@ export function StatsPage() {
   return (
     <div className="flex flex-col h-screen bg-stone-50 dark:bg-stone-900 font-mono text-sm">
       <header className="flex items-center px-4 h-10 border-b border-stone-200 dark:border-stone-800">
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-stone-600 dark:text-stone-300 hover:text-stone-800 dark:hover:text-stone-100 transition-colors"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          <span>Back</span>
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/"
+            className="p-1 hover:bg-stone-100 dark:hover:bg-stone-800 rounded transition-colors"
+            title="Home"
+          >
+            <Home className="h-4 w-4" />
+          </Link>
+          <Link
+            href="/viewer"
+            className="flex items-center gap-2 text-stone-600 dark:text-stone-300 hover:text-stone-800 dark:hover:text-stone-100 transition-colors"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span>Back to Viewer</span>
+          </Link>
+        </div>
       </header>
 
       <main className="flex-1 flex items-center justify-center p-8">
@@ -149,7 +167,7 @@ export function StatsPage() {
             <span>Questions? </span>
             <a
               href="mailto:hey@ufraan.com"
-              className="flex items-center gap-1 hover:text-stone-600 dark:hover:text-stone-300 transition-colors"
+              className="hover:text-stone-600 dark:hover:text-stone-300 transition-colors"
             >
               hey@ufraan.com
             </a>
