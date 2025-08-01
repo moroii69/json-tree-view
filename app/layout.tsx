@@ -2,6 +2,7 @@ import type React from "react"
 import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
+import { Analytics } from "@vercel/analytics/react"
 
 export default function RootLayout({
   children,
@@ -23,6 +24,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light">
           {children}
           <Toaster />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
@@ -30,8 +32,8 @@ export default function RootLayout({
 }
 
 export const metadata = {
-      title: 'JSON Tree Viewer',
-      icons: {
-        icon: "/code.png"
-      }
-    };
+  title: 'JSON Tree Viewer',
+  icons: {
+    icon: "/code.png"
+  }
+}
