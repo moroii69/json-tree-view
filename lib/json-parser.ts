@@ -13,7 +13,7 @@ export async function parseJsonWithMetrics(jsonString: string): Promise<{ data: 
   const startMemory = (performance as any).memory?.usedJSHeapSize || 0
 
   // Simulate minimum loading time for showcase
-  await new Promise((resolve) => setTimeout(resolve, 2000))
+  await new Promise((resolve) => setTimeout(resolve, 1000))
 
   const data = JSON.parse(jsonString)
   const endTime = performance.now()
